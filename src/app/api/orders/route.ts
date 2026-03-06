@@ -14,7 +14,6 @@ export async function POST(request: Request) {
             }
         })
         const jsonResult = await result.json();
-        console.log('RESULT => ', jsonResult);
         return Response.json(jsonResult);
     } catch (error) {
         const errorMessage = (error as Error).message || "Something went wrong!";
@@ -22,4 +21,24 @@ export async function POST(request: Request) {
             status: 500
         })
     }
+}
+
+export async function GET(request: Request) {
+
+    const baseUrl = process.env.ORDER_PROCESSOR_BE_URL as string;
+    const apiPath = 'list';
+
+    const apiUrl = `${baseUrl}/${apiPath}`;
+
+    try {
+        const result = await fetch(apiUrl);
+        const jsonResult = await result.json();
+        return Response.json(jsonResult);
+    } catch (error) {
+        const errorMessage = (error as Error).message || "Something went wrong!!";
+        return new Response(errorMessage, {
+            status: 500
+        })
+    }
+
 }
