@@ -104,7 +104,6 @@ export const ListOrder = ({}) => {
         </div>
     }
 
-    console.log('DATA => ', data);
 
     return (
         <div>
